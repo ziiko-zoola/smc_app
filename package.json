@@ -1,0 +1,10 @@
+{
+  "name": "smc-root",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "cd smc_backend && npm install && node server.js"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}

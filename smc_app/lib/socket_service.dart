@@ -7,8 +7,8 @@ class SocketService {
 
   static String get serverUrl {
     String url = Uri.base.origin;
-    if (url == 'null' || url.isEmpty || url.contains('localhost')) {
-      return 'https://acceptance-issue-pvc-lying.trycloudflare.com';
+    if (url == 'null' || url.isEmpty || url.contains('localhost') || url.contains('127.0.0.1')) {
+      return 'http://192.168.100.134:5000';
     }
     return url;
   }

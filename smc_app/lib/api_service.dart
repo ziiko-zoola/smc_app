@@ -8,9 +8,9 @@ class ApiService {
     // For Flutter Web, Uri.base.origin gets the current domain (e.g., cloudflare link)
     // This removes the need to update the code whenever the tunnel link changes.
     String url = Uri.base.origin;
-    if (url == 'null' || url.isEmpty || url.contains('localhost')) {
-      // Fallback for local development if needed, but usually Uri.base works on web
-      return 'https://acceptance-issue-pvc-lying.trycloudflare.com/api'; 
+    if (url == 'null' || url.isEmpty || url.contains('localhost') || url.contains('127.0.0.1')) {
+      // Fallback for local development
+      return 'http://192.168.100.134:5000/api'; 
     }
     return '$url/api';
   }

@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: smc-backend
+    runtime: node
+    buildCommand: cd smc_backend && npm install
+    startCommand: cd smc_backend && npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: PORT
+        value: 5000
+      - key: MONGODB_URI
+        # This will be overridden in the Render Dashboard
+        value: "mongodb+srv://placeholder:placeholder@cluster0.mongodb.net/smc_db"

@@ -1,0 +1,42 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        channel: 'stable'
+
+    - name: Install dependencies
+      run: |
+        cd smc_app
+        flutter pub get
+
+    - name: Build APK
+      run: |
+        cd smc_app
+        flutter build apk --release
+
+    - name: Upload APK
+    # Use v4 for better stability and performance
+      uses: actions/upload-artifact@v4
+      with:
+        name: smc-app-release
+        path: smc_app/build/app/outputs/flutter-apk/app-release.apk
